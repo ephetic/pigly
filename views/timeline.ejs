@@ -1,0 +1,14 @@
+<div class="timeline">
+<% for(var i=0; i < data.length; i++) { %>
+	<div class="timeline-entry">
+		<img class="timeline-picture" src="<%= data[i].filename %>">
+		<!-- <div class="timeline-caption"><%= data[i].caption %></div> -->
+		<div class="timeline-date"><%= data[i].created_at %></div>
+		<!-- <div class="timeline-id"><%= data[i].id %></div> -->
+		<form method="post" action="/api/pics/<%= data[i].filename %>">
+			<input type="submit" name="vote" value="piggy"></input>
+			<input type="submit" name="vote" value="skely"></input>
+		</form>
+	</div>
+<% } %>
+</div>
