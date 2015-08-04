@@ -24,6 +24,7 @@
     "ejs": "^2.3.3",
     "express-partials": "^0.3.0",
     "express-session": "^1.11.3",
+    "jwt-simple": "^0.3.0",
     "mongoose": "^4.1.0",
     "multer": "^1.0.1",
     "nodemon": "^1.4.0"
