@@ -1,3 +1,42 @@
+h1 {
+  font-family: sans-serif;
+}
+
 img {
   width: 300px
+}
+
+img.timeline-icon{
+  width: 30px;
+}
+
+
+div.timeline-votebox {
+  display: inline-block;
+}
+div.timeline-votebox.right{
+  float: right;
+}
+img.timeline-icon.right{
+  width: 30px;
+  /*margin-right: -10px;*/
+  /*float: right;*/
+}
+span.timeline-count {
+  font-family: sans-serif;
+  font-size: 80%;
+  /*margin-left: -10%;*/
+}
+span.timeline-count {
+  /*margin-right: -20%;*/
+  /*display: inline-block;*/
+}
+
+.timeline-image{
+  border-radius: 20px;
+}
+
+.timeline-entry{
+  display: inline-block;
+  padding: 13px;
 }
