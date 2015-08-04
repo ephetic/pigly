@@ -1,0 +1,23 @@
+<div id='container'>
+	<form action="/capture" method="post" enctype="multipart/form-data">
+		<input type="file" name="pic" onchange="angular.element(this).scope().upload(this)">
+		<!-- <input type="submit" value="Save"></input> -->
+	</form>
+	<div class="timeline">
+		<div class="timeline-entry" ng-repeat="pic in data.pics">
+			<img class="timeline-image" src="{{ pic.name }}"></img>
+			<div class="timeline-datestamp">{{ pic.created_at }}</div>
+			<div class="timeline-voterow">
+				<div class="timeline-votebox">
+					<img class="timeline-icon" src="images/pigly.png" ng-click="vote(pic,'piggy')">
+					<span class="timeline-count">{{ pic.piggies }}</span>
+				</div>
+				<div class="timeline-votebox right">
+					<span class="timeline-count">{{ pic.skelies }}</span>
+					<img class="timeline-icon right" src="images/skelly.png" ng-click="vote(pic,'skely')">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <ui-view> -->
