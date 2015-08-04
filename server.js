@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var partials = require('express-partials');
+var jwt = require('jwt-simple');
 
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
@@ -48,7 +49,6 @@ app.post('/api/pics/:pic', bodyParser.json(), function(req, res, next){
   res.send(req.pic);
 })
 
-//TODO make this /api/pics call for ajax loading
 app.get('/api/pics', function(req,res){
   Pic.find(function(err, pics){
     pics = pics || [];
@@ -88,62 +88,37 @@ app.post('/capture', upload.single('pic'), function(req,res){
   res.end();
 })
 
-// TEST 1
-/* on good form: 
-part --
-part
-Content-Disposition: form-data; name="pic"; filename="healthfitnessrevolution-com.jpg"
-Content-Type: image/jpeg
-
-����JFIFdd��C
-part --
-*/
-// app.post('/capture', function(req, res){
-//   var data = '';
-//   req.on('data', function(chunk){data+=chunk});
-//   req.on('end', function(){
-//     // var boundary = req.headers['content-type'].match(/boundary=(.*)/)[1];
-//     console.log('header',req.headers);
-//     console.log('data', data.slice(0,150));
-//     // var ddata = data.split(boundary).forEach(function(part){
-//     //   console.log('part', part.slice(0,150));
-//     // })
-//   })
-//   res.end();
-// })
-// TEST 2
-// app.post('/capture', upload.single('pic'), function(req, res){
-//   console.log('file', req.file);
-//   res.end();
-// })
-
-app.post('/signin', bodyParser.json(), function(req, res, next){
+app.post('/api/users/signin', bodyParser.json(), function(req, res, next){
   var username = req.body.username,
       password = req.body.password;
 
-  User.find({username: username}, function(user){
+  User.findOne({username: username}, function(err, user){
+    console.log('signin', req.body, user);
     if(!user) return next(new Error('No such user'));
     user.checkPassword(password, function(err, foundUser){
-      if(!foundUser) return next(new Error('No such user'));
+      if(!foundUser) return next(new Error('Passwords don\'t match'));
       var token = jwt.encode(user, 'secret');
       res.json({token: token})
     })
   })
 })
 
-app.post('/signup', bodyParser.json(), function(req, res, next){
+app.post('/api/users/signup', bodyParser.json(), function(req, res, next){
   var username = req.body.username,
       password = req.body.password;
   User.findOne({username:username}, function(err, user) {
+    console.log('signup', err, user);
     if(user) return next(new Error('User already exists!'));
-    new User({username: username, password: password})
+    var u = new User({username: username, password: password})
     .save(function(err, user){
       console.log('created user', err, user);
+      var token = jwt.encode(user, 'secret');
+      res.json({token: token})
     })
   });
 })
 
-app.get('/signedin', function(req, res, next){
+app.get('/api/users/signedin', function(req, res, next){
   var token = req.headers['x-access-token'];
   if(!token) return next(new Error('No token'));
   var user = jwt.decode(token, 'secret');
