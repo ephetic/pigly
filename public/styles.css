@@ -12,6 +12,37 @@ h2 {
 a {
   font-size: 50%;
 }
+a.nav-link{
+  font-size: 80%;
+  color: black;
+  text-decoration: none;
+  padding: 5px;
+  cursor:pointer;
+}
+a.nav-link:visited{
+  color: black;
+}
+a.nav-link:hover{
+  background-color: #aaf;
+  border-radius: 4px;
+  /*font-weight: bold;*/
+}
+form{
+  display: inline-block;
+}
+input[type=file]{
+  /*padding:5px;*/
+  display: inline-block;
+
+  padding:5px 15px;
+  background:#ccc;
+  border:0 none;
+  cursor:pointer;
+  border-radius: 5px;
+}
+input[type=file]:hover{
+  background-color: #aaf;
+}
 .signout{
   float: right;
   position: absolute;

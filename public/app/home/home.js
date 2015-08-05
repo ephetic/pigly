@@ -16,7 +16,6 @@ angular.module('pigly.home', [])
     })
     .then(function(resp){
       data.pics = resp.data;
-      console.log(data.pics);
     })
   }
   var vote = function(img, pic, vote){

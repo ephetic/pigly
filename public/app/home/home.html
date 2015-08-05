@@ -2,10 +2,14 @@
 	<a href="#" ng-click="signout()">Logout</a>
 </div>
 <div id='container'>
-	<form action="/capture" method="post" enctype="multipart/form-data">
-		<input type="file" name="pic" onchange="angular.element(this).scope().upload(this)">
-		<!-- <input type="submit" value="Save"></input> -->
-	</form>
+    <div class="nav">
+		<a href="/#/home" class="nav-link">Home</a>
+		<a href="/#/all" class="nav-link">All</a>
+		<form action="/capture" method="post" enctype="multipart/form-data">
+			<input type="file" name="pic" onchange="angular.element(this).scope().upload(this)">
+			<!-- <input type="submit" value="Save"></input> -->
+		</form>
+    </div>
 	<div class="timeline">
 		<div class="timeline-entry" ng-repeat="pic in data.pics">
 			<img class="timeline-image" src="{{ pic.name }}"></img>

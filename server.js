@@ -81,9 +81,7 @@ app.get('/api/pics', function(req,res){
     pics = pics || [];
     pics = pics.map(function(pic){
       var vote = req.user.votes.reduce(function(vote, uservote){
-        console.log(pic.id, uservote.picid)
         if(pic.id === uservote.picid){
-          console.log(uservote.vote);
           return uservote.vote;
         }
         return vote;
