@@ -1,13 +1,39 @@
-h1 {
+* {
   font-family: sans-serif;
 }
+h1 {
+  display: inline-block;
+}
 
+h2 {
+  font-size: 95%;
+}
+
+a {
+  font-size: 50%;
+}
+.signout{
+  float: right;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.auth-message{
+  color: red;
+  font-style: italic;
+  font-size:80%;
+}
 img {
   width: 300px
 }
 
 img.timeline-icon{
   width: 30px;
+}
+img.vote-selected
+{
+    box-shadow: 0px 0px 5px #aaf;
+    background-color: #aaf;
 }
 
 
@@ -23,7 +49,6 @@ img.timeline-icon.right{
   /*float: right;*/
 }
 span.timeline-count {
-  font-family: sans-serif;
   font-size: 80%;
   /*margin-left: -10%;*/
 }

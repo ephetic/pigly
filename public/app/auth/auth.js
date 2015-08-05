@@ -9,11 +9,15 @@ angular.module('pigly.auth', [])
   $scope.signin = function () {
     Auth.signin($scope.user)
       .then(function (token) {
+        console.log('signin', token);
         $window.localStorage.setItem('com.pigly', token);
         $location.path('/home');
-      })
-      .catch(function (error) {
-        console.error(error);
+      },function (err){
+        $window.localStorage.removeItem('com.pigly');
+        console.log('  error', err);
+        $scope.user.username='';
+        $scope.user.password='';
+        $scope.message = 'Bad username or password';
       });
   };
 
@@ -22,9 +26,11 @@ angular.module('pigly.auth', [])
       .then(function (token) {
         $window.localStorage.setItem('com.pigly', token);
         $location.path('/home');
-      })
-      .catch(function (error) {
-        console.error(error);
+      },function (err) {
+        console.log('  error', err);
+        $scope.user.username='';
+        $scope.user.password='';
+        $scope.message = 'Username already taken';
       });
   };
 })
@@ -48,6 +54,7 @@ angular.module('pigly.auth', [])
   };
 
   var signup = function (user) {
+    console.log('signup');
     return $http({
       method: 'POST',
       url: '/api/users/signup',
@@ -63,6 +70,7 @@ angular.module('pigly.auth', [])
   };
 
   var signout = function () {
+    console.log('signout');
     $window.localStorage.removeItem('com.pigly');
     $location.path('/signin');
   };

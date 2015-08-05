@@ -7,7 +7,7 @@ var PicSchema = db.Schema({
   mimetype: String,
   size: Number,
   caption: String,
-  userId: Number,
+  userid: String,
   clicks: { type: Number, default: 0},
   piggies: {type: Number, default: 0},
   skelies: {type: Number, default: 0},

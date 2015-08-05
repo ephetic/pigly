@@ -28,7 +28,7 @@ angular.module('pigly',[
       authenticate: true
     });
 
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/signin');
 
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
@@ -41,7 +41,7 @@ angular.module('pigly',[
   // then add it to the header so the server can validate the request
   var attach = {
     request: function (object) {
-      var jwt = $window.localStorage.getItem('com.shortly');
+      var jwt = $window.localStorage.getItem('com.pigly');
       if (jwt) {
         object.headers['x-access-token'] = jwt;
       }

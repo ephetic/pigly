@@ -3,8 +3,17 @@ var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 
 var UserSchema = db.Schema({
-  username: String,
+  username: {
+    type: String,
+    lowercase: true,
+    index: { unique: true }
+  },
   password: String,
+  // votes: [db.Schema.Types.Mixed]
+  votes: [{
+    picid: String,
+    vote: String
+  }],
 });
 
 UserSchema.methods.checkPassword = function (password, callback) {

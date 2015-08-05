@@ -1,9 +1,10 @@
 <div id='signin'>
-  <h1>sign in</h1>
-  <form name="signinForm" ng-submit='signin()' novalidate>
-    <input type='text'ng-model='user.username' required>
-    <input type="password" ng-model='user.password' required>
+  <h2>sign in</h2>
+  <form name="signinForm" ng-submit='signin()'>
+    <input type='text'ng-model='user.username' required placeholder="username">
+    <input type="password" ng-model='user.password' required placeholder="password">
     <button ng-disabled="signinForm.$invalid">sign in</button>
+    <span class="auth-message">{{message}}</span>
   </form>
   <a href="#/signup">Don't have an account? <strong>Sign up</strong> ...</a>
 </div>

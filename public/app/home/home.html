@@ -1,3 +1,6 @@
+<div class="signout">
+	<a href="#" ng-click="signout()">Logout</a>
+</div>
 <div id='container'>
 	<form action="/capture" method="post" enctype="multipart/form-data">
 		<input type="file" name="pic" onchange="angular.element(this).scope().upload(this)">
@@ -9,12 +12,12 @@
 			<div class="timeline-datestamp">{{ pic.created_at }}</div>
 			<div class="timeline-voterow">
 				<div class="timeline-votebox">
-					<img class="timeline-icon" src="images/pigly.png" ng-click="vote(pic,'piggy')">
+					<img class="timeline-icon" src="images/pigly.png" ng-click="vote(this, pic,'piggy')" ng-class="pic.vote === 'piggy' ? 'vote-selected' : ''">
 					<span class="timeline-count">{{ pic.piggies }}</span>
 				</div>
 				<div class="timeline-votebox right">
 					<span class="timeline-count">{{ pic.skelies }}</span>
-					<img class="timeline-icon right" src="images/skelly.png" ng-click="vote(pic,'skely')">
+					<img class="timeline-icon right" src="images/skelly.png" ng-click="vote(this, pic,'skely')" ng-class="pic.vote === 'skely' ? 'vote-selected' : ''" >
 				</div>
 			</div>
 		</div>
